@@ -1,0 +1,36 @@
+<h2>Contact details:</h2>
+<table>
+  <tbody *ngIf="contact">
+    <tr>
+      <th>Imię</th>
+      <td>{{ contact.firstName }}</td>
+    </tr>
+    <tr>
+      <th>Nazwisko</th>
+      <td>{{ contact.lastName }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ contact.email }}</td>
+    </tr>
+    <tr>
+      <th>Kategoria</th>
+      <td>{{ contact.category }}</td>
+    </tr>
+    <tr *ngIf="contact.subcategory">
+      <th>Subkategoria</th>
+      <td>{{ contact.subcategory }}</td>
+    </tr>
+    <tr>
+      <th>Numer telefonu</th>
+      <td>{{ contact.phoneNumber }}</td>
+    </tr>
+    <tr>
+      <th>Data urodzenia</th>
+      <td>{{ contact.birthDate }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<a routerLink="/contacts">Go back</a>
+

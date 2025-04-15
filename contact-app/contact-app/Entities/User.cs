@@ -1,11 +1,19 @@
-﻿namespace contact_app.Entities
+﻿using System.ComponentModel.DataAnnotations;
+namespace contact_app.Entities
 {
     public class User
     {
-        public int id { get; set; } 
-        public string email { get; set; }
-        public byte[] passwordHash { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-        public byte[] passwordSalt { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        public byte[] PasswordHash { get; set; }
+
+        [Required]
+        public byte[] PasswordSalt { get; set; }
     }
 }

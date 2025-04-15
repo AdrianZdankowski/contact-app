@@ -1,0 +1,70 @@
+@apiAddress = http://localhost:5088
+
+### Register
+# @name registerUser
+POST {{apiAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "testowy@wp.pl",
+  "password": "Haslo@1234"
+}
+
+
+### Save token
+@token = {{registerUser.response.body.token}}
+
+### Get all contacts
+GET {{apiAddress}}/api/contact
+Accept: application/json
+
+
+### Add new contact
+POST {{apiAddress}}/api/contact
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstName": "Jan",
+  "lastName": "Kowalski",
+  "category": "Inny",
+  "subCategory": "Mąż",
+  "email": "someemail@wp.pl",
+  "phoneNumber": "123456789",
+  "birthDate": "1980-05-15",
+  "password": "Haslo123!"
+}
+
+
+### Edit contact 
+PUT {{apiAddress}}/api/contact/3
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "firstName": "Jan",
+    "lastName": "Brzechwa",
+    "email": "jan.Brzechwa@example.com",
+    "phoneNumber": "123456789",
+    "birthDate": "1980-05-15",
+    "category": "Inny",
+    "subCategory": "Bajkopisarz",
+    "oldPassword": "P@ssword123",
+    "newPassword": "Bajeczki@1"
+}
+
+
+### Get contact details
+GET {{apiAddress}}/api/contact/3
+Accept: application/json
+
+
+### Delete contact
+DELETE {{apiAddress}}/api/contact/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id":1,
+  "password": "Haslo123!"
+}

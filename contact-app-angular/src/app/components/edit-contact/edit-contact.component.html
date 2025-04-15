@@ -1,0 +1,62 @@
+<h2>Edit contact</h2>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Imię</label>
+    <input formControlName="firstName" />
+  </div>
+
+  <div>
+    <label>Nazwisko</label>
+    <input formControlName="lastName" />
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input formControlName="email" type="email" />
+  </div>
+
+  <div>
+    <label>Telefon</label>
+    <input formControlName="phoneNumber" />
+  </div>
+
+  <div>
+    <label>Data urodzenia</label>
+    <input formControlName="birthDate" type="date" />
+  </div>
+
+  <div>
+    <label>Kategoria</label>
+    <select formControlName="category" (change)="onCategoryChange($event)">
+      <option value="Służbowy">Służbowy</option>
+      <option value="Prywatny">Prywatny</option>
+      <option value="Inny">Inny</option>
+    </select>
+  </div>
+
+  <div *ngIf="selectedCategory === 'Służbowy'">
+    <label>Podkategoria</label>
+    <select formControlName="subCategory">
+      <option value="">-- wybierz --</option>
+      <option value="Szef">Szef</option>
+      <option value="Klient">Klient</option>
+    </select>
+  </div>
+
+  <div *ngIf="selectedCategory === 'Inny'">
+    <label>Podkategoria (dowolna)</label>
+    <input formControlName="subCategory" />
+  </div>
+
+  <div>
+    <label>Stare hasło</label>
+    <input formControlName="oldPassword" type="password" />
+  </div>
+
+  <div>
+    <label>Nowe hasło</label>
+    <input formControlName="newPassword" type="password" />
+  </div>
+
+  <button type="submit" [disabled]="editForm.invalid">Save changes</button>
+</form>

@@ -1,0 +1,19 @@
+<h2>Delete contact</h2>
+
+<form [formGroup]="deleteForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="password">Potwierdź hasło</label>
+    <input id="password" type="password" formControlName="password" />
+
+    <div *ngIf="deleteForm.get('password')?.invalid && deleteForm.get('password')?.touched">
+      <small *ngIf="deleteForm.get('password')?.errors?.['required']">Hasło jest wymagane.</small>
+      <small *ngIf="deleteForm.get('password')?.errors?.['minlength']">Min. 8 znaków.</small>
+      <small *ngIf="deleteForm.get('password')?.errors?.['pattern']">
+        Musi zawierać dużą literę, cyfrę i znak specjalny.
+      </small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="deleteForm.invalid">Delete contact</button>
+</form>
+

@@ -1,0 +1,60 @@
+<h2>Add new contact</h2>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="firstName">Imię</label>
+      <input id="firstName" formControlName="firstName">
+    </div>
+  
+    <div>
+      <label for="lastName">Nazwisko</label>
+      <input id="lastName" formControlName="lastName">
+    </div>
+
+    <div>
+      <label for="category">Kategoria</label>
+      <select id="category" formControlName="category" (change)="onCategoryChange($event)">
+        <option value="">-- wybierz kategorię --</option>
+        <option value="Służbowy">Służbowy</option>
+        <option value="Prywatny">Prywatny</option>
+        <option value="Inny">Inny</option>
+      </select>
+    </div>
+  
+    <!-- SUBCATEGORY: tylko jeśli kategoria to "Służbowy" -->
+    <div *ngIf="selectedCategory === 'Służbowy'">
+      <label for="subcategory">Podkategoria</label>
+      <select id="subcategory" formControlName="subcategory">
+        <option value="">-- wybierz podkategorię --</option>
+        <option value="Szef">Szef</option>
+        <option value="Klient">Klient</option>
+      </select>
+    </div>
+  
+    <!-- SUBCATEGORY: jeśli "Inny" -->
+    <div *ngIf="selectedCategory === 'Inny'">
+      <label for="subcategory">Podkategoria (dowolna)</label>
+      <input id="subcategory" formControlName="subcategory">
+    </div>
+  
+    <div>
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email">
+    </div>
+
+    <div>
+      <label for="phoneNumber">Numer telefonu</label>
+      <input id="phoneNumber" formControlName="phoneNumber">
+    </div>
+  
+    <div>
+      <label for="birthDate">Data urodzenia</label>
+      <input id="birthDate" formControlName="birthDate" type="date">
+    </div>
+  
+    <div>
+      <label for="password">Hasło</label>
+      <input id="password" formControlName="password" type="password">
+    </div>
+  
+    <button type="submit" [disabled]="contactForm.invalid">Add contact</button>
+  </form>
